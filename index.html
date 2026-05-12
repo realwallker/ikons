@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Olonesa Reserva Village | Donde el lujo vive en reserva natural</title>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FCF9F2;
+      color: #1E2F2B;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --deep-green: #1A3A32;
+      --olive: #2F5A4A;
+      --sand: #EADDC6;
+      --gold: #C6A15B;
+      --gold-light: #E3C992;
+      --charcoal: #2C2A29;
+      --cream: #FDFAF5;
+      --white: #FFFFFF;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--sand);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 10px;
+    }
+
+    section {
+      padding: 100px 5%;
+      position: relative;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.85s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 1.1;
+      color: var(--deep-green);
+    }
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .section-sub {
+      font-size: 1.2rem;
+      color: #5A6E66;
+      margin-bottom: 3rem;
+      max-width: 700px;
+    }
+    .gold-accent {
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(107deg, rgba(26,58,50,0.85) 0%, rgba(26,58,50,0.3) 100%), url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&w=2000&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+      padding: 0 5%;
+      color: white;
+    }
+    .hero .container {
+      z-index: 2;
+    }
+    .hero h1 {
+      color: white;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .hero h1 span {
+      font-family: inherit;
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 650px;
+      margin: 1.5rem 0 2rem;
+      font-weight: 300;
+    }
+    .hero-badge {
+      background: rgba(198,161,91,0.2);
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 0.4rem 1.3rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      border-left: 2px solid var(--gold);
+    }
+    .btn-luxury {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--deep-green);
+      padding: 1rem 2.2rem;
+      border-radius: 0;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-luxury:hover {
+      background: #B48B3E;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -8px rgba(0,0,0,0.2);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      margin-left: 1rem;
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--deep-green);
+    }
+
+    /* stats */
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .stat-card {
+      flex: 1;
+      min-width: 160px;
+      background: var(--cream);
+      padding: 1.8rem 1rem;
+      text-align: center;
+      box-shadow: 0 10px 25px -12px rgba(0,0,0,0.05);
+      border-bottom: 3px solid var(--gold);
+      transition: transform 0.2s;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--deep-green);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      box-shadow: 0 12px 28px -10px rgba(0,0,0,0.05);
+      border-radius: 24px;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px -12px rgba(0,0,0,0.12);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    /* tabla */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 2rem 0;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--deep-green);
+      color: white;
+      padding: 1rem;
+      font-weight: 600;
+    }
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .highlight-row {
+      background: #FEF7E6;
+      font-weight: 500;
+      border-left: 4px solid var(--gold);
+    }
+
+    .quote-block {
+      background: #EADDC6;
+      padding: 2rem;
+      border-radius: 32px;
+      text-align: center;
+      margin: 3rem 0;
+    }
+    .quote-text {
+      font-size: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+    footer {
+      background: var(--deep-green);
+      color: var(--sand);
+      padding: 3rem 5%;
+      text-align: center;
+    }
+    @media (max-width: 860px) {
+      section { padding: 70px 5%; }
+      .hero { background-attachment: scroll; }
+      .btn-outline { margin-left: 0; margin-top: 1rem; display: inline-block; }
+    }
+    .flex-2col {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+    }
+    .col {
+      flex: 1;
+      min-width: 260px;
+    }
+    .image-placeholder {
+      background: #ECE3D4;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.1);
+    }
+    .image-placeholder img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .image-placeholder:hover img {
+      transform: scale(1.02);
+    }
+    .gold-border {
+      border-left: 3px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+    .advisory-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F8F3EA 100%);
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO: Presentación del proyecto como sitio web -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-badge"><i class="fas fa-leaf"></i> RESERVA NATURAL PRIVADA</div>
+    <h1>Olonesa <span>Reserva Village</span><br>Donde el lujo pertenece a la naturaleza</h1>
+    <p>Santa Elena, Olón, Ecuador — a solo 6 minutos de la playa. Primera etapa: 104 lotes desde 600 m². Más que un terreno: un legado dentro de más de 10.000 hectáreas de ecosistema virgen.</p>
+    <div>
+      <a href="#informacion" class="btn-luxury">EXPLORAR EL LEGADO <i class="fas fa-arrow-right"></i></a>
+      <a href="#diferenciadores" class="btn-luxury btn-outline">VENTAJA ÚNICA</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE EL PROYECTO -->
+<section id="informacion">
+  <div class="container">
+    <h2>La visión <span class="gold-accent">· Naturaleza y legado</span></h2>
+    <div class="section-sub">Un santuario de conservación donde el lujo silencioso se encuentra con la vida al aire libre.</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number" data-count="104">0</div><div>Lotes Primera Etapa</div><small>desde 600 m² c/u</small></div>
+      <div class="stat-card"><div class="stat-number" data-count="175">0</div><div>Hectáreas totales</div><small>100+ de reserva protegida</small></div>
+      <div class="stat-card"><div class="stat-number" data-count="10000" data-kilo="true">0</div><div>Hectáreas de entorno natural</div><small>Chongón-Colonche intacto</small></div>
+      <div class="stat-card"><div class="stat-number" data-count="6">0</div><div>Minutos a la playa Olón</div><small>acceso premium al mar</small></div>
+    </div>
+    <div class="flex-2col" style="margin-top: 2rem;">
+      <div class="col">
+        <p style="font-size:1.2rem; line-height:1.5"><strong>Más que un terreno: un ecosistema.</strong> Al comprar en Olonesa te conviertes en custodio de un corredor de bosque seco tropical con más de <strong>10.000 hectáreas de naturaleza intacta</strong> a la redonda. No adquieres un lote, heredas un paisaje para siempre.</p>
+        <p style="margin-top:1rem;">Actualmente operativo: <strong>Olonesa Reserva Lodge</strong> + restaurante <em>Bruma</em> (de la finca a la mesa). Una experiencia inmersiva que antecede a la compra.</p>
+      </div>
+      <div class="col image-placeholder">
+        <img src="https://images.unsplash.com/photo-1542407337145-2269ca6ac1bf?auto=format&w=800&q=80" alt="Lodge rodeado de bosque tropical" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIADORES ÚNICOS -->
+<section id="diferenciadores" style="background: #F4EFE6;">
+  <div class="container">
+    <h2>Por qué Olonesa no tiene comparación</h2>
+    <div class="section-sub">El único village de lujo con conservación en Ecuador que integra reserva natural privada, lodge experiencial y amenities de alto nivel.</div>
+    <div class="feature-grid">
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-tree"></i></div><h3>+100 hectáreas de reserva</h3><p>Bosque intangible, corredores de fauna (monos aulladores, tucanes) y flora endémica. Privacidad y legado ecológico absolutos.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-horse"></i></div><h3>Experiencia Lodge pre-compra</h3><p>Los interesados pueden hospedarse en el lodge, cabalgatas, avistamiento de aves y cocina de origen en Bruma. Se vive antes de decidir.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Escasez y valor sustentable</h3><p>Solo 104 lotes en primera etapa. Precio desde $180/m², ofreciendo una reserva natural incomparable frente a otros desarrollos.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="fas fa-globe-americas"></i></div><h3>Efecto Zona Azul</h3><p>La cordillera Chongón-Colonche es reconocida por longevidad y bienestar. Una inversión en estilo de vida y salud.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELIGENCIA DE MERCADO (tabla comparativa) -->
+<section id="comparativa">
+  <div class="container">
+    <h2>Inteligencia de mercado <span class="gold-accent">· Posicionamiento premium</span></h2>
+    <div class="section-sub">Olonesa redefine el segmento: escala de naturaleza + village residencial sin rival en la costa ecuatoriana.</div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Proyecto</th><th>Ubicación</th><th>Tamaño lote</th><th>Precio / m²</th><th>Amenidades y reserva</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row"><td><strong>Olonesa Reserva Village</strong></td><td>Olón, Santa Elena</td><td>600m²+</td><td><strong>$180</strong> (desde)</td><td><strong>+100 ha reserva, House Club, Lodge, entorno 10k+ ha</strong></td></tr>
+          <tr><td>Maskana Residences</td><td>Olón</td><td>300m²+</td><td>$186</td><td>42 ha, zona ecuestre, restaurante</td></tr>
+          <tr><td>Altos de Olón</td><td>Olón</td><td>712m²</td><td>$100</td><td>Piscina, áreas sociales, cerrado</td></tr>
+          <tr><td>Sol de Olón</td><td>Olón</td><td>600m²+</td><td>n/d</td><td>Estilo mediterráneo, vistas al valle</td></tr>
+          <tr><td>Ventura Resort</td><td>Olón-Curia</td><td>variable</td><td>n/d</td><td>40 segundos a playa privada</td></tr>
+          <tr><td>Ka Ohi Ana</td><td>Ayampe, Manabí</td><td>1000m²+</td><td>$225</td><td>20 ha reserva, granja orgánica, bienestar</td></tr>
+          <tr><td>Rythmia Residences (CR)</td><td>Costa Rica</td><td>—</td><td>—</td><td>Referente global: bienestar + residencias</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text"><i class="fas fa-quote-left" style="margin-right:8px; color:var(--gold);"></i> Olonesa no compite por precio por metro, compite por <strong>legado de vida</strong> — no compras tierra, compras un ecosistema entero.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO INTERNACIONAL Y BIENESTAR -->
+<section style="background: #FFFCF7;">
+  <div class="container">
+    <div class="flex-2col">
+      <div class="col">
+        <h2>Referente internacional <br><span class="gold-accent">Lujo consciente</span></h2>
+        <p>Proyectos como <strong>Rythmia Residences (Costa Rica)</strong> y <strong>Ka Ohi Ana (Ayampe)</strong> han demostrado una demanda global por enclaves residenciales centrados en bienestar y naturaleza. Ecuador se mantenía al margen hasta la llegada de Olonesa.</p>
+        <p style="margin-top:1rem;"><strong>El diferenciador global:</strong> Mientras Rythmia se enfoca en bienestar, Olonesa integra <strong>una reserva natural en pleno funcionamiento, infraestructura lodge preexistente y cercanía simultánea al océano y la montaña</strong>. Ningún otro proyecto ofrece la dinámica “vive antes de comprar”.</p>
+      </div>
+      <div class="col image-placeholder">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&w=800&q=80" alt="Vista aérea de resort ecológico" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFIL DEL COMPRADOR PREMIUM -->
+<section>
+  <div class="container">
+    <h2>Exclusividad redefinida: <br>El perfil del custodio</h2>
+    <div class="section-sub">Inversionistas sofisticados, buscadores de segunda residencia, ciudadanos globales que valoran privacidad, biodiversidad y plusvalía de largo plazo.</div>
+    <div class="feature-grid">
+      <div class="feature-card"><i class="fas fa-user-tie feature-icon"></i><h3>El custodio</h3><p>Ingresos superiores a $500k, busca más que lujo material: un legado en conservación. Atraído por zonas azules, autenticidad y bienestar.</p></div>
+      <div class="feature-card"><i class="fas fa-lock feature-icon"></i><h3>Marketing de escasez</h3><p>Solo 104 familias pueden pertenecer. Eventos privados en el Lodge generan conexión emocional antes de la decisión de compra.</p></div>
+      <div class="feature-card"><i class="fas fa-chart-simple feature-icon"></i><h3>Plusvalía superior</h3><p>Con el auge de Montañita y Olón, pero con reserva protegida que evita sobreconstrucción. Retorno de inversión proyectado único.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASESORÍA ESTRATÉGICA (aquí se muestra el valor del equipo de ventas y desarrollo web, de forma sutil pero convincente) -->
+<section style="background: #F8F3EA;">
+  <div class="container">
+    <div class="advisory-card">
+      <div class="flex-2col">
+        <div class="col">
+          <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; display: inline-block;"></i>
+          <h2 style="margin-bottom: 0.5rem;">Acompañamiento <br>integral premium</h2>
+          <p style="font-size: 1.1rem; margin-top: 0.5rem;">Estrategia de comercialización, inteligencia de mercado y <strong>presencia digital a la altura del proyecto</strong>. Creamos experiencias de venta que conectan con compradores de alto poder adquisitivo.</p>
+          <ul style="margin: 1.5rem 0 0 1.2rem; list-style: none;">
+            <li style="margin-bottom: 0.7rem;"><i class="fas fa-check-circle gold-accent"></i> <strong>Narrativa de lujo con propósito</strong> – “Custodios de más de 10.000 hectáreas”</li>
+            <li style="margin-bottom: 0.7rem;"><i class="fas fa-check-circle gold-accent"></i> <strong>Viajes de preview exclusivos</strong> (helicóptero, cenas privadas en Bruma)</li>
+            <li style="margin-bottom: 0.7rem;"><i class="fas fa-check-circle gold-accent"></i> <strong>Plataforma web de alta conversión</strong> – el sitio que estás viendo es una muestra del nivel que Olonesa merece.</li>
+            <li style="margin-bottom: 0.7rem;"><i class="fas fa-check-circle gold-accent"></i> <strong>Dashboard de inteligencia competitiva</strong> actualizado en tiempo real.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="image-placeholder" style="margin-bottom: 1rem;">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=600&q=80" alt="Asesoría de lujo y tecnología" loading="lazy">
+          </div>
+          <p class="gold-border" style="margin-top: 1rem;">Más que un corredor inmobiliario: <strong>socios estratégicos en la construcción de marca y ventas para proyectos de conservación de alto valor.</strong> Creamos el puente entre la naturaleza intacta y el comprador global.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE INSPIRACIONAL -->
+<section style="padding: 70px 5% 90px;">
+  <div class="container" style="text-align: center;">
+    <div class="gold-border" style="display: inline-block; text-align: left;">
+      <h2 style="margin-bottom: 0.5rem;">Olonesa Reserva Village</h2>
+      <p style="font-size: 1.3rem;">El primer y único village de lujo con conservación<br>y más de 10.000 hectáreas de paraíso salvaje en Ecuador.</p>
+    </div>
+    <div style="margin: 2rem auto; max-width: 550px;">
+      <p>Una oportunidad de inversión, legado y conexión profunda con la naturaleza. Solo 104 familias podrán formar parte de esta historia.</p>
+    </div>
+    <a href="#" class="btn-luxury" style="background: var(--deep-green); color: white;">SOLICITAR DOSSIER PRIVADO <i class="fas fa-dove"></i></a>
+  </div>
+</section>
+
+<footer>
+  <p><i class="fas fa-seedling"></i> Olonesa Reserva Village — Santa Elena, Ecuador | Donde tu legado se encuentra con lo salvaje</p>
+  <p style="margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.8;">Diseño estratégico y consultoría premium para proyectos de conservación de alto valor.</p>
+</footer>
+
+<script>
+  (function() {
+    // Animación de secciones al hacer scroll
+    const sections = document.querySelectorAll('section');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -20px 0px" });
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Contadores animados
+    const counters = document.querySelectorAll('.stat-number');
+    function animateCounter(el, target) {
+      let current = 0;
+      const isKilo = el.getAttribute('data-kilo') === 'true';
+      let targetValue = target;
+      if (isKilo && target === 10000) targetValue = 10000;
+      const step = Math.ceil(targetValue / 55);
+      let interval = setInterval(() => {
+        if (isKilo) {
+          let currentK = current / 1000;
+          let targetK = targetValue / 1000;
+          if (current < targetValue) {
+            current = Math.min(current + step, targetValue);
+            let displayVal = (current / 1000).toFixed(1);
+            if (current >= targetValue) {
+              el.innerText = Math.floor(targetK) + 'k+';
+            } else {
+              el.innerText = parseFloat(displayVal).toFixed(0) + 'k';
+            }
+          } else {
+            el.innerText = Math.floor(targetK) + 'k+';
+            clearInterval(interval);
+          }
+        } else {
+          if (current < targetValue) {
+            current = Math.min(current + step, targetValue);
+            el.innerText = Math.floor(current);
+            if (current === targetValue) clearInterval(interval);
+          } else {
+            clearInterval(interval);
+          }
+        }
+      }, 20);
+    }
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-count'), 10);
+          if (!isNaN(target)) {
+            el.innerText = '0';
+            animateCounter(el, target);
+          }
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#" || href === "") return;
+        const targetElem = document.querySelector(href);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
