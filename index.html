@@ -4,820 +4,279 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ikons | El futuro de la vida de lujo</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS + Font Awesome + Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Personalizaciones adicionales */
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #FFFFFF;
-      color: #1A1E1C;
-      overflow-x: hidden;
-      line-height: 1.5;
     }
-
-    :root {
-      --primary: #006C59;
-      --primary-dark: #005244;
-      --primary-light: #E0F0ED;
-      --gray-bg: #E0E0E0;
-      --gray-light: #F5F5F5;
-      --gray-mid: #B0B0B0;
-      --dark-charcoal: #1E2A28;
-      --white: #FFFFFF;
-      --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-
-    h1, h2, h3, .serif-heading {
+    h1, h2, h3, .serif {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      letter-spacing: -0.01em;
     }
-
-    h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: #0F2D27;
+    /* Transiciones suaves entre vistas */
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 0.4s ease, transform 0.3s ease;
     }
-
-    @media (min-width: 768px) {
-      h2 {
-        font-size: 3.6rem;
-      }
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    /* Navigation */
-    .navbar {
-      position: sticky;
-      top: 0;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      border-bottom: 1px solid rgba(0, 108, 89, 0.12);
-      padding: 1rem 0;
-      transition: all 0.2s;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .logo-area {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-      cursor: pointer;
-    }
-
-    .logo-main {
-      font-size: 1.9rem;
-      font-weight: 700;
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: -0.5px;
-      color: var(--primary);
-    }
-
-    .logo-tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.5px;
-      font-weight: 500;
-      color: #4A5A56;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #1F2C29;
-      transition: var(--transition);
-      font-size: 0.95rem;
-      cursor: pointer;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--primary);
-    }
-
-    .nav-cta {
-      background: var(--primary);
-      color: white !important;
-      padding: 0.5rem 1.4rem;
-      border-radius: 40px;
-      font-weight: 600;
-    }
-
-    .nav-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--primary);
-    }
-
-    /* vistas - componente principal */
-    .view {
-      display: none;
+    .fade-enter-from, .fade-leave-to {
       opacity: 0;
-      animation: fadeIn 0.5s ease forwards;
+      transform: translateY(12px);
     }
-
-    .view.active-view {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    section.view-section {
-      padding: 80px 0;
-    }
-
-    .section-bg-light {
-      background-color: var(--gray-bg);
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 3rem auto;
-    }
-
-    .section-header p {
-      color: #4E6B64;
-      font-size: 1.1rem;
-    }
-
-    /* Hero (Inicio) */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .hero-content .pre-header {
-      color: var(--primary);
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content h1 {
-      font-size: 4rem;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: #0F2D27;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #3A4D48;
-      margin-bottom: 2rem;
-      max-width: 90%;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 1rem 2.2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transition);
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      box-shadow: 0 8px 18px rgba(0, 108, 89, 0.2);
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-4px);
-      box-shadow: 0 14px 28px rgba(0, 108, 89, 0.25);
-    }
-
-    .hero-image img {
-      width: 100%;
-      border-radius: 32px;
-      box-shadow: var(--shadow-md);
-      object-fit: cover;
-      height: 480px;
-    }
-
-    /* Property Cards (Compra / Alquila) */
-    .property-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
+    /* Efectos personalizados para tarjetas */
     .property-card {
-      background: white;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     }
-
     .property-card:hover {
-      transform: translateY(-12px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-10px);
+      box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
     }
-
-    .card-img {
-      height: 280px;
-      overflow: hidden;
+    .btn-hover {
+      transition: all 0.2s ease;
     }
-
-    .card-img img {
-      width: 100%;
-      height: 100%;
+    .btn-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -8px rgba(0,108,89,0.3);
+    }
+    /* Scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Clase para el color primario personalizado */
+    .text-ikons { color: #006C59; }
+    .bg-ikons { background-color: #006C59; }
+    .border-ikons { border-color: #006C59; }
+    .hover\:bg-ikons-dark:hover { background-color: #005244; }
+    .from-ikons-light { --tw-gradient-from: #E0F0ED; }
+    /* Mejora de imágenes */
+    img {
       object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .property-card:hover .card-img img {
-      transform: scale(1.05);
-    }
-
-    .card-content {
-      padding: 1.6rem;
-    }
-
-    .price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    .rent-price {
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-
-    .location {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin: 0.5rem 0 1rem 0;
-      color: #5F756F;
-      font-weight: 500;
-    }
-
-    .details {
-      display: flex;
-      gap: 1.2rem;
-      border-top: 1px solid #EAEAEA;
-      padding-top: 1rem;
-      margin-top: 0.6rem;
-      font-size: 0.85rem;
-      color: #3A4D48;
-    }
-
-    /* Nosotros */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text p {
-      margin-bottom: 1rem;
-      color: #2D4841;
-    }
-
-    .about-stats {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--primary);
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    .about-image img {
-      width: 100%;
-      border-radius: 32px;
-      box-shadow: var(--shadow-md);
-    }
-
-    /* Vende */
-    .sell-card {
-      background: white;
-      border-radius: 32px;
-      padding: 2.5rem;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .sell-card i {
-      font-size: 3rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .sell-card h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-list {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-    }
-
-    .service-list span {
-      background: var(--primary-light);
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    /* Contacto / Asesoría Privada */
-    .contact-section {
-      background: linear-gradient(135deg, #F9FCFB 0%, #EDF3F1 100%);
-      border-radius: 48px;
-      margin: 0 20px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      padding: 2rem;
-    }
-
-    .contact-left h3 {
-      font-size: 2.4rem;
-      font-family: 'Cormorant Garamond', serif;
-      color: #0A2E27;
-    }
-
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border: 1px solid #D0DFDA;
-      border-radius: 28px;
-      font-family: 'Inter', sans-serif;
-      background: white;
-      transition: 0.2s;
-    }
-
-    .contact-form input:focus, .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(0,108,89,0.2);
-    }
-
-    .contact-form button {
-      background: var(--primary);
-      border: none;
-      width: auto;
-      padding: 0.9rem 2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* Footer */
-    footer {
-      background: #0F2D27;
-      color: #D4E2DE;
-      padding: 50px 0 30px;
-      margin-top: 40px;
-    }
-
-    .footer-grid {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-brand p {
-      max-width: 280px;
-      margin-top: 1rem;
-      font-size: 0.85rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 3rem;
-    }
-
-    .footer-links a {
-      color: #C6DDD7;
-      text-decoration: none;
-      font-weight: 400;
-      transition: color 0.2s;
-      cursor: pointer;
-    }
-
-    .social-icons i {
-      font-size: 1.4rem;
-      margin-left: 1rem;
-      color: #B8CFC8;
-      transition: 0.2s;
-      cursor: pointer;
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 0.75rem;
-      border-top: 1px solid #235347;
-      padding-top: 2rem;
-    }
-
-    @media (max-width: 992px) {
-      .hero-grid, .about-grid, .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        text-align: center;
-      }
-      .hero-content p {
-        max-width: 100%;
-      }
-      .hero-image img {
-        height: 380px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 24px;
-      }
-      .nav-links {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        padding: 2rem 1rem;
-        gap: 1.8rem;
-        box-shadow: 0 20px 30px rgba(0,0,0,0.05);
-        transition: 0.3s ease;
-        border-radius: 0 0 24px 24px;
-        z-index: 99;
-      }
-      .nav-links.active {
-        left: 0;
-      }
-      .hamburger {
-        display: block;
-      }
-      .hero-content h1 {
-        font-size: 3rem;
-      }
-      h2 {
-        font-size: 2.2rem;
-      }
-      .footer-grid {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-      }
-      .footer-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
     }
   </style>
 </head>
-<body>
+<body class="bg-white text-gray-800 antialiased" x-data="app()" x-init="init()">
 
-<nav class="navbar">
-  <div class="container nav-container">
-    <div class="logo-area" id="logoHome">
-      <span class="logo-main">IKONS</span>
-      <span class="logo-tag">EL FUTURO DE LA VIDA DE LUJO</span>
-    </div>
-    <div class="hamburger" id="hamburger">
-      <i class="fas fa-bars"></i>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a data-page="inicio">Inicio</a></li>
-      <li><a data-page="nosotros">Nosotros</a></li>
-      <li><a data-page="compra">Compra</a></li>
-      <li><a data-page="vende">Vende</a></li>
-      <li><a data-page="alquila">Alquila</a></li>
-      <!-- Eliminado "Contáctanos", solo Asesoría Privada -->
-      <li><a data-page="asesoria" class="nav-cta">Asesoría Privada</a></li>
-    </ul>
-  </div>
-</nav>
-
-<main id="main-content">
-  <!-- VISTA INICIO -->
-  <div id="view-inicio" class="view">
-    <section class="view-section">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="pre-header">IKONS REAL ESTATE ADVISORS</div>
-          <h1>El futuro de la vida de lujo.<br>Curado para visionarios.</h1>
-          <p>Más allá de la arquitectura: creamos legados. Asesoría exclusiva, cartera global y acceso incomparable a las propiedades más extraordinarias del mundo.</p>
-          <a class="btn-primary" data-page="compra">Descubrir colección <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
-        </div>
-        <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format" alt="Residencia de lujo moderna">
-        </div>
+  <!-- Barra de navegación premium -->
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="cursor-pointer group" @click="activeView = 'inicio'">
+        <div class="text-ikons text-2xl md:text-3xl font-bold serif tracking-tight">IKONS</div>
+        <div class="text-[10px] md:text-xs text-gray-500 tracking-wider uppercase">El futuro de la vida de lujo</div>
       </div>
-    </section>
-  </div>
 
-  <!-- VISTA NOSOTROS -->
-  <div id="view-nosotros" class="view">
-    <section class="view-section section-bg-light">
-      <div class="container">
-        <div class="section-header">
-          <h2>Excelencia discreta</h2>
-          <p>Una firma global de asesoría inmobiliaria que redefine el lujo.</p>
-        </div>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>Fundada con la visión de ofrecer un servicio sin precedentes, Ikons representa la cúspide del asesoramiento inmobiliario. Combinamos intuición, diseño y una red de inversión internacional para clientes que exigen lo extraordinario.</p>
-            <p>Cada operación es única: desde la búsqueda de la villa costera perfecta hasta la gestión de patrimonios inmobiliarios de ultra lujo. Nuestro compromiso es la confidencialidad y la excelencia.</p>
-            <div class="about-stats">
-              <div class="stat"><div class="stat-number">+20</div><div>Países</div></div>
-              <div class="stat"><div class="stat-number">€2.5B</div><div>En ventas</div></div>
-              <div class="stat"><div class="stat-number">98%</div><div>Clientes recurrentes</div></div>
+      <!-- Menú desktop -->
+      <div class="hidden md:flex items-center gap-7">
+        <a @click.prevent="activeView = 'inicio'" :class="{'text-ikons font-semibold': activeView === 'inicio'}" class="cursor-pointer text-gray-700 hover:text-ikons transition text-sm font-medium">Inicio</a>
+        <a @click.prevent="activeView = 'nosotros'" :class="{'text-ikons font-semibold': activeView === 'nosotros'}" class="cursor-pointer text-gray-700 hover:text-ikons transition text-sm font-medium">Nosotros</a>
+        <a @click.prevent="activeView = 'compra'" :class="{'text-ikons font-semibold': activeView === 'compra'}" class="cursor-pointer text-gray-700 hover:text-ikons transition text-sm font-medium">Compra</a>
+        <a @click.prevent="activeView = 'vende'" :class="{'text-ikons font-semibold': activeView === 'vende'}" class="cursor-pointer text-gray-700 hover:text-ikons transition text-sm font-medium">Vende</a>
+        <a @click.prevent="activeView = 'alquila'" :class="{'text-ikons font-semibold': activeView === 'alquila'}" class="cursor-pointer text-gray-700 hover:text-ikons transition text-sm font-medium">Alquila</a>
+        <a @click.prevent="activeView = 'asesoria'" class="bg-ikons text-white px-5 py-2 rounded-full text-sm font-semibold transition btn-hover shadow-md">Asesoría Privada</a>
+      </div>
+
+      <!-- Botón hamburguesa móvil -->
+      <div class="md:hidden cursor-pointer text-ikons text-2xl" @click="mobileMenuOpen = !mobileMenuOpen">
+        <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'"></i>
+      </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div x-show="mobileMenuOpen" x-transition.duration.200ms class="md:hidden bg-white border-t border-gray-100 py-4 px-6 flex flex-col gap-4 shadow-lg" style="display: none;">
+      <a @click.prevent="activeView = 'inicio'; mobileMenuOpen=false" :class="{'text-ikons font-semibold': activeView === 'inicio'}" class="cursor-pointer py-1">Inicio</a>
+      <a @click.prevent="activeView = 'nosotros'; mobileMenuOpen=false" :class="{'text-ikons font-semibold': activeView === 'nosotros'}" class="cursor-pointer py-1">Nosotros</a>
+      <a @click.prevent="activeView = 'compra'; mobileMenuOpen=false" :class="{'text-ikons font-semibold': activeView === 'compra'}" class="cursor-pointer py-1">Compra</a>
+      <a @click.prevent="activeView = 'vende'; mobileMenuOpen=false" :class="{'text-ikons font-semibold': activeView === 'vende'}" class="cursor-pointer py-1">Vende</a>
+      <a @click.prevent="activeView = 'alquila'; mobileMenuOpen=false" :class="{'text-ikons font-semibold': activeView === 'alquila'}" class="cursor-pointer py-1">Alquila</a>
+      <a @click.prevent="activeView = 'asesoria'; mobileMenuOpen=false" class="bg-ikons text-white text-center py-2 rounded-full font-semibold">Asesoría Privada</a>
+    </div>
+  </nav>
+
+  <!-- Contenedor principal con transiciones de vista -->
+  <main class="relative overflow-hidden">
+    <!-- Vista Inicio -->
+    <div x-show="activeView === 'inicio'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak>
+      <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="text-ikons text-sm font-semibold tracking-widest uppercase">Ikons Real Estate Advisors</span>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mt-4 serif">El futuro de la vida de lujo.<br>Curado para visionarios.</h1>
+            <p class="text-gray-600 text-lg mt-6 leading-relaxed">Más allá de la arquitectura: creamos legados. Asesoría exclusiva, cartera global y acceso incomparable a las propiedades más extraordinarias del mundo.</p>
+            <div class="mt-8">
+              <a @click.prevent="activeView = 'compra'" class="bg-ikons text-white px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2 btn-hover shadow-lg cursor-pointer">Descubrir colección <i class="fas fa-arrow-right text-sm"></i></a>
             </div>
           </div>
-          <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&auto=format" alt="Reunión de asesores de lujo">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format" alt="Luxury villa" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover" loading="eager">
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent rounded-3xl"></div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- VISTA COMPRA -->
-  <div id="view-compra" class="view">
-    <section class="view-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Adquiere lo icónico</h2>
-          <p>Propiedades de ensueño, seleccionadas para los estándares más altos.</p>
-        </div>
-        <div class="property-grid">
-          <div class="property-card">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&auto=format" alt="Villa Marbella"></div>
-            <div class="card-content"><div class="price">€ 9.850.000</div><div class="location"><i class="fas fa-map-marker-alt"></i> Marbella, Golden Mile</div><p>Obra maestra contemporánea con vistas al mar, spa privado.</p><div class="details"><span><i class="far fa-building"></i> 6 hab</span> <span><i class="far fa-bath"></i> 7 baños</span> <span>1.280 m²</span></div></div>
-          </div>
-          <div class="property-card">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format" alt="Penthouse Nueva York"></div>
-            <div class="card-content"><div class="price">$ 22.500.000</div><div class="location"><i class="fas fa-map-marker-alt"></i> Nueva York, Central Park Tower</div><p>Penthouse de piso completo con vistas 360°, ascensor privado.</p><div class="details"><span><i class="far fa-building"></i> 4 hab</span> <span><i class="far fa-bath"></i> 5.5 baños</span> <span>510 m²</span></div></div>
-          </div>
-          <div class="property-card">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&auto=format" alt="Villa Lago Como"></div>
-            <div class="card-content"><div class="price">€ 14.200.000</div><div class="location"><i class="fas fa-map-marker-alt"></i> Lago Como, Italia</div><p>Finca histórica frente al lago con embarcadero privado.</p><div class="details"><span><i class="far fa-building"></i> 8 hab</span> <span><i class="far fa-bath"></i> 9 baños</span> <span>2.100 m²</span></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- VISTA VENDE -->
-  <div id="view-vende" class="view">
-    <section class="view-section section-bg-light">
-      <div class="container">
-        <div class="section-header">
-          <h2>Vende con Ikons</h2>
-          <p>Una estrategia de marketing que eleva el valor de tu propiedad.</p>
-        </div>
-        <div class="sell-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>Valoración premium + exposición global</h3>
-          <p>Nuestro equipo de expertos despliega campañas personalizadas, fotografía profesional, circuitos cerrados con compradores internacionales y asesoramiento legal integral.</p>
-          <div class="service-list"><span>Estudio de mercado</span><span>Staging & fotografía</span><span>Red de inversores</span><span>Cierre confidencial</span></div>
-          <a class="btn-primary" data-page="asesoria" style="margin-top: 1rem;">Solicitar tasación gratuita</a>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- VISTA ALQUILA -->
-  <div id="view-alquila" class="view">
-    <section class="view-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Alquileres excepcionales</h2>
-          <p>Estancias temporales con todo el lujo y la privacidad que mereces.</p>
-        </div>
-        <div class="property-grid">
-          <div class="property-card">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format" alt="Puerto Banús"></div>
-            <div class="card-content"><div class="price rent-price">€ 24.500 / mes</div><div class="location"><i class="fas fa-map-marker-alt"></i> Puerto Banús, Marbella</div><p>Ático dúplex con terraza panorámica, acabados de mármol.</p><div class="details"><span><i class="far fa-building"></i> 3 hab</span> <span><i class="far fa-bath"></i> 3 baños</span> <span>210 m²</span></div></div>
-          </div>
-          <div class="property-card">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&auto=format" alt="Villa Ibiza"></div>
-            <div class="card-content"><div class="price rent-price">€ 48.000 / mes</div><div class="location"><i class="fas fa-map-marker-alt"></i> Ibiza, Cala Jondal</div><p>Villa bohemia-chic con piscina infinita, personal de servicio.</p><div class="details"><span><i class="far fa-building"></i> 5 hab</span> <span><i class="far fa-bath"></i> 5 baños</span> <span>650 m²</span></div></div>
-          </div>
-          <div class="property-card">
-            <div class="card-img"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&auto=format" alt="The Hamptons"></div>
-            <div class="card-content"><div class="price rent-price">$ 35.000 / mes</div><div class="location"><i class="fas fa-map-marker-alt"></i> The Hamptons, Nueva York</div><p>Estate tradicional renovada, piscina climatizada y acceso privado a la playa.</p><div class="details"><span><i class="far fa-building"></i> 6 hab</span> <span><i class="far fa-bath"></i> 4.5 baños</span> <span>480 m²</span></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- VISTA ASESORÍA PRIVADA (antes contacto) -->
-  <div id="view-asesoria" class="view">
-    <section class="view-section" style="padding: 60px 0 80px;">
-      <div class="container contact-section">
-        <div class="contact-grid">
-          <div class="contact-left">
-            <h3>Tu visión,<br>nuestro sello.</h3>
-            <p>Conecta con un asesor de Ikons para una presentación privada o para explorar nuestra colección off-market.</p>
-            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;"><div><i class="fas fa-phone-alt" style="color:#006C59"></i> +34 912 345 678</div><div><i class="fas fa-envelope" style="color:#006C59"></i> hola@ikons.com</div></div>
-            <div style="margin-top: 1rem; font-size: 0.85rem; color: #4D6E66;"><i class="fas fa-lock"></i> Consulta 100% confidencial</div>
-          </div>
-          <div class="contact-form">
-            <form id="contactFormSpanish">
-              <input type="text" placeholder="Nombre completo" required>
-              <input type="email" placeholder="Correo electrónico" required>
-              <textarea rows="3" placeholder="Cuéntanos tus aspiraciones..."></textarea>
-              <button type="submit">Solicitar acceso privado <i class="fas fa-chevron-right"></i></button>
-            </form>
-            <p style="font-size: 0.7rem; margin-top: 12px;">*Nuestro equipo responde en menos de 24 horas.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo-main" style="color: white; font-size: 1.8rem;">IKONS</div>
-        <p>El futuro de la vida de lujo, definido por propiedades visionarias y un servicio inigualable.</p>
-        <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i><i class="fab fa-x-twitter"></i></div>
-      </div>
-      <div class="footer-links">
-        <div><h4 style="color: white; font-weight: 500;">Asesoría</h4><a data-page="compra">Compra</a><br><a data-page="vende">Vende</a><br><a data-page="alquila">Alquila</a></div>
-        <div><h4 style="color: white; font-weight: 500;">IKONS</h4><a data-page="nosotros">Nosotros</a><br><a href="#">Prensa</a><br><a href="#">Carreras</a></div>
-      </div>
+      </section>
     </div>
-    <div class="copyright"><span>© 2025 IKONS REAL ESTATE ADVISORS — Asesoría de lujo | Opción 1</span><br><span style="font-size: 0.7rem;">El futuro de la vida de lujo. #006C59 | #E0E0E0</span></div>
-  </div>
-</footer>
 
-<script>
-  // Vistas: se incluye 'asesoria' en lugar de 'contacto'
-  const views = {
-    inicio: document.getElementById('view-inicio'),
-    nosotros: document.getElementById('view-nosotros'),
-    compra: document.getElementById('view-compra'),
-    vende: document.getElementById('view-vende'),
-    alquila: document.getElementById('view-alquila'),
-    asesoria: document.getElementById('view-asesoria')
-  };
+    <!-- Vista Nosotros -->
+    <div x-show="activeView === 'nosotros'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak>
+      <section class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-14">
+            <h2 class="text-4xl md:text-5xl font-bold serif text-gray-900">Excelencia discreta</h2>
+            <p class="text-gray-600 mt-4 text-lg">Una firma global de asesoría inmobiliaria que redefine el lujo.</p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p class="text-gray-700 mb-4 leading-relaxed">Fundada con la visión de ofrecer un servicio sin precedentes, Ikons representa la cúspide del asesoramiento inmobiliario. Combinamos intuición, diseño y una red de inversión internacional para clientes que exigen lo extraordinario.</p>
+              <p class="text-gray-700 mb-6 leading-relaxed">Cada operación es única: desde la búsqueda de la villa costera perfecta hasta la gestión de patrimonios inmobiliarios de ultra lujo. Nuestro compromiso es la confidencialidad y la excelencia.</p>
+              <div class="flex gap-8 mt-8">
+                <div><span class="text-3xl font-bold text-ikons serif">+20</span><p class="text-gray-600 text-sm">Países</p></div>
+                <div><span class="text-3xl font-bold text-ikons serif">€2.5B</span><p class="text-gray-600 text-sm">En ventas</p></div>
+                <div><span class="text-3xl font-bold text-ikons serif">98%</span><p class="text-gray-600 text-sm">Clientes recurrentes</p></div>
+              </div>
+            </div>
+            <div><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&auto=format" alt="Asesores" class="rounded-2xl shadow-xl w-full h-[450px] object-cover"></div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-  function activateView(viewId) {
-    Object.values(views).forEach(view => {
-      if (view) view.classList.remove('active-view');
-    });
-    const active = views[viewId];
-    if (active) active.classList.add('active-view');
-    
-    document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
-      const page = link.getAttribute('data-page');
-      if (page === viewId) link.classList.add('active');
-      else link.classList.remove('active');
-    });
-    
-    history.pushState({ page: viewId }, '', `#${viewId}`);
-    localStorage.setItem('ikonsActiveView', viewId);
-  }
+    <!-- Vista Compra -->
+    <div x-show="activeView === 'compra'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak>
+      <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold serif text-gray-900">Adquiere lo icónico</h2>
+            <p class="text-gray-600 mt-3">Propiedades de ensueño, seleccionadas para los estándares más altos.</p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md property-card cursor-pointer group">
+              <div class="h-72 overflow-hidden"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&auto=format" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+              <div class="p-6"><div class="text-2xl font-bold text-ikons">€ 9.850.000</div><div class="flex items-center gap-1 text-gray-500 mt-1"><i class="fas fa-map-marker-alt text-ikons text-sm"></i> Marbella, Golden Mile</div><p class="text-gray-600 mt-3">Obra maestra contemporánea con vistas al mar, spa privado.</p><div class="flex gap-4 mt-4 pt-4 border-t text-gray-500 text-sm"><span><i class="far fa-building"></i> 6 hab</span><span><i class="far fa-bath"></i> 7 baños</span><span>1.280 m²</span></div></div>
+            </div>
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md property-card cursor-pointer group">
+              <div class="h-72 overflow-hidden"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+              <div class="p-6"><div class="text-2xl font-bold text-ikons">$ 22.500.000</div><div class="flex items-center gap-1 text-gray-500 mt-1"><i class="fas fa-map-marker-alt text-ikons text-sm"></i> Nueva York, Central Park Tower</div><p class="text-gray-600 mt-3">Penthouse de piso completo con vistas 360°.</p><div class="flex gap-4 mt-4 pt-4 border-t text-gray-500 text-sm"><span><i class="far fa-building"></i> 4 hab</span><span><i class="far fa-bath"></i> 5.5 baños</span><span>510 m²</span></div></div>
+            </div>
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md property-card cursor-pointer group">
+              <div class="h-72 overflow-hidden"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&auto=format" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div>
+              <div class="p-6"><div class="text-2xl font-bold text-ikons">€ 14.200.000</div><div class="flex items-center gap-1 text-gray-500 mt-1"><i class="fas fa-map-marker-alt text-ikons text-sm"></i> Lago Como, Italia</div><p class="text-gray-600 mt-3">Finca histórica frente al lago con embarcadero privado.</p><div class="flex gap-4 mt-4 pt-4 border-t text-gray-500 text-sm"><span><i class="far fa-building"></i> 8 hab</span><span><i class="far fa-bath"></i> 9 baños</span><span>2.100 m²</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
-  function handleNavigation(event) {
-    const target = event.currentTarget;
-    const page = target.getAttribute('data-page');
-    if (page && views[page]) {
-      event.preventDefault();
-      activateView(page);
-      if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        const icon = hamburger.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+    <!-- Vista Vende -->
+    <div x-show="activeView === 'vende'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak>
+      <section class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+          <h2 class="text-4xl md:text-5xl font-bold serif text-gray-900">Vende con Ikons</h2>
+          <p class="text-gray-600 mt-3 text-lg">Una estrategia de marketing que eleva el valor de tu propiedad.</p>
+          <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 mt-10">
+            <i class="fas fa-chart-line text-5xl text-ikons mb-5"></i>
+            <h3 class="text-2xl md:text-3xl font-bold serif">Valoración premium + exposición global</h3>
+            <p class="text-gray-600 my-5">Nuestro equipo de expertos despliega campañas personalizadas, fotografía profesional, circuitos cerrados con compradores internacionales y asesoramiento legal integral.</p>
+            <div class="flex flex-wrap justify-center gap-3 my-6"><span class="bg-emerald-50 text-ikons px-4 py-1.5 rounded-full text-sm font-medium">Estudio de mercado</span><span class="bg-emerald-50 text-ikons px-4 py-1.5 rounded-full text-sm font-medium">Staging & fotografía</span><span class="bg-emerald-50 text-ikons px-4 py-1.5 rounded-full text-sm font-medium">Red de inversores</span><span class="bg-emerald-50 text-ikons px-4 py-1.5 rounded-full text-sm font-medium">Cierre confidencial</span></div>
+            <a @click.prevent="activeView = 'asesoria'" class="bg-ikons text-white px-8 py-3 rounded-full font-semibold inline-block btn-hover cursor-pointer">Solicitar tasación gratuita</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Vista Alquila -->
+    <div x-show="activeView === 'alquila'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak>
+      <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold serif text-gray-900">Alquileres excepcionales</h2>
+            <p class="text-gray-600 mt-3">Estancias temporales con todo el lujo y la privacidad que mereces.</p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md property-card"><div class="h-72 overflow-hidden"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&auto=format" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div><div class="p-6"><div class="text-xl font-bold text-ikons">€ 24.500 / mes</div><div class="flex items-center gap-1 text-gray-500"><i class="fas fa-map-marker-alt text-ikons"></i> Puerto Banús, Marbella</div><p class="text-gray-600 mt-2">Ático dúplex con terraza panorámica.</p><div class="flex gap-4 mt-3 pt-3 border-t text-sm"><span><i class="far fa-building"></i> 3 hab</span><span><i class="far fa-bath"></i> 3 baños</span><span>210 m²</span></div></div></div>
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md property-card"><div class="h-72 overflow-hidden"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&auto=format" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div><div class="p-6"><div class="text-xl font-bold text-ikons">€ 48.000 / mes</div><div class="flex items-center gap-1 text-gray-500"><i class="fas fa-map-marker-alt text-ikons"></i> Ibiza, Cala Jondal</div><p class="text-gray-600 mt-2">Villa bohemia-chic con piscina infinita.</p><div class="flex gap-4 mt-3 pt-3 border-t text-sm"><span><i class="far fa-building"></i> 5 hab</span><span><i class="far fa-bath"></i> 5 baños</span><span>650 m²</span></div></div></div>
+            <div class="bg-white rounded-3xl overflow-hidden shadow-md property-card"><div class="h-72 overflow-hidden"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&auto=format" class="w-full h-full object-cover transition duration-700 group-hover:scale-105"></div><div class="p-6"><div class="text-xl font-bold text-ikons">$ 35.000 / mes</div><div class="flex items-center gap-1 text-gray-500"><i class="fas fa-map-marker-alt text-ikons"></i> The Hamptons, NY</div><p class="text-gray-600 mt-2">Estate renovado, acceso privado a la playa.</p><div class="flex gap-4 mt-3 pt-3 border-t text-sm"><span><i class="far fa-building"></i> 6 hab</span><span><i class="far fa-bath"></i> 4.5 baños</span><span>480 m²</span></div></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Vista Asesoría Privada (Formulario) -->
+    <div x-show="activeView === 'asesoria'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-cloak>
+      <section class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-xl overflow-hidden md:flex border border-gray-100">
+            <div class="md:w-1/2 p-8 md:p-12">
+              <h3 class="text-3xl md:text-4xl font-bold serif text-gray-900">Tu visión,<br>nuestro sello.</h3>
+              <p class="text-gray-600 mt-4">Conecta con un asesor de Ikons para una presentación privada o para explorar nuestra colección off-market.</p>
+              <div class="mt-8 space-y-3"><div><i class="fas fa-phone-alt text-ikons w-6"></i> +34 912 345 678</div><div><i class="fas fa-envelope text-ikons w-6"></i> hola@ikons.com</div><div class="flex items-center gap-2 text-sm text-gray-500 mt-6"><i class="fas fa-lock text-ikons"></i> Consulta 100% confidencial</div></div>
+            </div>
+            <div class="md:w-1/2 bg-white p-8 md:p-12">
+              <form @submit.prevent="submitForm">
+                <input type="text" placeholder="Nombre completo" class="w-full border border-gray-200 rounded-2xl px-5 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-ikons/30" required>
+                <input type="email" placeholder="Correo electrónico" class="w-full border border-gray-200 rounded-2xl px-5 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-ikons/30" required>
+                <textarea rows="3" placeholder="Cuéntanos tus aspiraciones..." class="w-full border border-gray-200 rounded-2xl px-5 py-3 mb-5 focus:outline-none focus:ring-2 focus:ring-ikons/30"></textarea>
+                <button type="submit" class="bg-ikons text-white w-full py-3 rounded-full font-semibold shadow-md hover:bg-[#005244] transition btn-hover">Solicitar acceso privado <i class="fas fa-chevron-right ml-1"></i></button>
+                <p class="text-xs text-gray-400 text-center mt-4">*Nuestro equipo responde en menos de 24 horas.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0F2D27] text-gray-300 pt-16 pb-8 mt-12">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div><div class="text-white text-2xl font-bold serif">IKONS</div><p class="text-sm mt-3 max-w-xs">El futuro de la vida de lujo, definido por propiedades visionarias y un servicio inigualable.</p><div class="flex gap-4 mt-4"><i class="fab fa-instagram text-xl hover:text-white cursor-pointer"></i><i class="fab fa-linkedin-in text-xl hover:text-white cursor-pointer"></i><i class="fab fa-x-twitter text-xl hover:text-white cursor-pointer"></i></div></div>
+        <div><h4 class="text-white font-semibold mb-3">Asesoría</h4><ul class="space-y-2 text-sm"><li><a @click.prevent="activeView = 'compra'" class="hover:text-white cursor-pointer">Compra</a></li><li><a @click.prevent="activeView = 'vende'" class="hover:text-white cursor-pointer">Vende</a></li><li><a @click.prevent="activeView = 'alquila'" class="hover:text-white cursor-pointer">Alquila</a></li></ul></div>
+        <div><h4 class="text-white font-semibold mb-3">Ikons</h4><ul class="space-y-2 text-sm"><li><a @click.prevent="activeView = 'nosotros'" class="hover:text-white cursor-pointer">Nosotros</a></li><li><a href="#" class="hover:text-white">Prensa</a></li><li><a href="#" class="hover:text-white">Carreras</a></li></ul></div>
+      </div>
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center text-xs"><span>© 2025 IKONS REAL ESTATE ADVISORS — Asesoría de lujo | El futuro de la vida de lujo. #006C59 | #E0E0E0</span></div>
+    </div>
+  </footer>
+
+  <script>
+    function app() {
+      return {
+        activeView: 'inicio',
+        mobileMenuOpen: false,
+        init() {
+          // detectar hash inicial o localStorage
+          const hash = window.location.hash.slice(1);
+          if (hash && ['inicio','nosotros','compra','vende','alquila','asesoria'].includes(hash)) {
+            this.activeView = hash;
+          } else {
+            const saved = localStorage.getItem('ikonsView');
+            if (saved && ['inicio','nosotros','compra','vende','alquila','asesoria'].includes(saved)) this.activeView = saved;
+          }
+          // guardar estado en localStorage y actualizar hash
+          this.$watch('activeView', (val) => {
+            localStorage.setItem('ikonsView', val);
+            window.history.pushState({ view: val }, '', `#${val}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            this.mobileMenuOpen = false;
+          });
+          window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.view) this.activeView = e.state.view;
+            else {
+              const newHash = window.location.hash.slice(1);
+              if (newHash && ['inicio','nosotros','compra','vende','alquila','asesoria'].includes(newHash)) this.activeView = newHash;
+              else this.activeView = 'inicio';
+            }
+          });
+        },
+        submitForm(e) {
+          e.preventDefault();
+          alert('Gracias por tu interés. Un asesor de lujo se comunicará contigo en breve.');
+          e.target.reset();
+        }
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }
-
-  document.querySelectorAll('[data-page]').forEach(el => {
-    el.addEventListener('click', handleNavigation);
-  });
-
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    const icon = hamburger.querySelector('i');
-    if (navLinks.classList.contains('active')) {
-      icon.classList.remove('fa-bars');
-      icon.classList.add('fa-times');
-    } else {
-      icon.classList.remove('fa-times');
-      icon.classList.add('fa-bars');
-    }
-  });
-
-  document.getElementById('logoHome').addEventListener('click', () => {
-    activateView('inicio');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  function loadInitialView() {
-    const hash = window.location.hash.slice(1);
-    if (hash && views[hash]) {
-      activateView(hash);
-    } else {
-      const saved = localStorage.getItem('ikonsActiveView');
-      if (saved && views[saved]) activateView(saved);
-      else activateView('inicio');
-    }
-  }
-
-  window.addEventListener('popstate', (event) => {
-    if (event.state && event.state.page) {
-      activateView(event.state.page);
-    } else {
-      const hash = window.location.hash.slice(1);
-      if (hash && views[hash]) activateView(hash);
-      else activateView('inicio');
-    }
-  });
-
-  const contactForm = document.getElementById('contactFormSpanish');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Gracias por tu interés. Un asesor de lujo se comunicará contigo en breve.');
-      contactForm.reset();
-    });
-  }
-
-  loadInitialView();
-</script>
+  </script>
+  <style>[x-cloak] { display: none !important; }</style>
 </body>
 </html>
